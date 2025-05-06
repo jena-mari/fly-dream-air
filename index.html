@@ -133,25 +133,59 @@
             </div>
 
             <div class="mb-6">
-                <label for="passengers" class="block text-gray-700 text-sm font-bold mb-2">Passengers</label>
-                <div class="relative">
-                    <select id="passengers"
-                        class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                        <option>1 Adult, 0 Children</option>
-                        <option>2 Adults, 0 Children</option>
-                        <option>1 Adult, 1 Child</option>
-                    </select>
-                    <div class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-chevron-down text-gray-500">
-                            <path d="m7 10 5 5 5-5" />
-                        </svg>
+                <label class="block text-gray-700 text-sm font-bold mb-2">Passengers</label>
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="adults" class="block text-gray-600 text-xs mb-1">Adults</label>
+                        <div class="relative">
+                            <select id="adults"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="children" class="block text-gray-600 text-xs mb-1">Children (2-11)</label>
+                        <div class="relative">
+                            <select id="children"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="infants" class="block text-gray-600 text-xs mb-1">Infants (0-2)</label>
+                        <div class="relative">
+                            <select id="infants"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <button
+            <a id="book-now"
                 class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full focus:outline-none focus:shadow-outline flex items-center justify-center">
                 Book Now
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
@@ -160,9 +194,46 @@
                     <path d="M5 12h14" />
                     <path d="m12 5 7 7-7 7" />
                 </svg>
-            </button>
+            </a>
         </div>
     </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const bookNowButton = document.getElementById('book-now');
+
+            bookNowButton.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Get form values
+                const fromLocation = document.getElementById('from').value;
+                const toLocation = document.getElementById('to').value;
+                const departureDate = document.getElementById('departure').value;
+                const returnDate = document.getElementById('return').value;
+                const adults = document.getElementById('adults').value;
+                const children = document.getElementById('children').value;
+                const infants = document.getElementById('infants').value;
+
+                // Save to localStorage
+                const bookingData = {
+                    from: fromLocation,
+                    to: toLocation,
+                    departure: departureDate,
+                    return: returnDate,
+                    passengers: {
+                        adults: parseInt(adults),
+                        children: parseInt(children),
+                        infants: parseInt(infants)
+                    }
+                };
+
+                localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+                // Redirect to seat selection page
+                window.location.href = '/seat-selection';
+            });
+        });
+    </script>
 </body>
 
 </html>
