@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seat Selection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="#" class="text-xl font-semibold text-gray-800">FlyDreamAir!</a>
+            <nav class="space-x-4">
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Book</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Manage Flight</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Travel Info</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-10">
+        <div id="flight-info" class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Flight Details</h2>
+            <p id="flight-details" class="text-gray-600">Loading flight details...</p>
+        </div>
+
+        <div id="seat-map" class="grid grid-cols-6 gap-4"></div>
+
+        <button id="save-seats" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full focus:outline-none focus:shadow-outline mt-6">
+            Save Selected Seats
+        </button>
+    </main>
+
+    <script src="js/seat-selection.js"></script>
+</body>
+
+</html>
