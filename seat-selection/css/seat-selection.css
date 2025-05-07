@@ -19,6 +19,7 @@ header {
     display: grid;
     grid-template-columns: repeat(6, 50px);
     gap: 10px;
+    justify-content: center;
     margin: 20px 0;
 }
 
@@ -30,8 +31,10 @@ header {
     border: 1px solid #000;
     text-align: center;
     line-height: 50px;
+    color: #333333; /* Very dark grey */
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .seat:hover {
@@ -39,11 +42,30 @@ header {
 }
 
 .seat.selected {
-    background-color: #696969; /* Dark grey */
+    background-color: #a9a9a9; /* Slightly darker grey */
 }
 
 button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+
+#flight-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 30%;
+}
+
+#save-seats {
+    margin-top: 20px;
+    align-self: flex-start;
+}
+
+#seat-map-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
 }
