@@ -2,14 +2,47 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Seat Selection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
+        }
+
+        #seat-map {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .seat {
+            width: 48px;
+            height: 48px;
+            background-color: #d3d3d3;
+            border-radius: 50%;
+            border: 1px solid #000;
+            text-align: center;
+            line-height: 48px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .seat:hover {
+            transform: scale(1.1);
+        }
+
+        .bg-gray-500 {
+            background-color: #696969;
+        }
+
+        .bg-gray-700 {
+            background-color: #333333;
         }
     </style>
 </head>
@@ -27,20 +60,121 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-10">
-        <div id="flight-info" class="bg-white rounded-lg shadow-lg p-6 mb-6">
+    <!-- MAIN: Flight info on left, seats on right -->
+    <main class="container mx-auto px-4 py-10 flex gap-10 items-start">
+        <!-- Left: Flight Info -->
+        <div id="flight-info" class="bg-white rounded-lg shadow-lg p-6">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">Flight Details</h2>
-            <p id="flight-details" class="text-gray-600">Loading flight details...</p>
+            <div id="flight-details" class="text-gray-600 space-y-1">
+                <!-- JS will fill this in -->
+            </div>
+            <button id="save-seats" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full mt-6">
+                Save Selected Seats
+            </button>
         </div>
 
-        <div id="seat-map" class="grid grid-cols-6 gap-4"></div>
-
-        <button id="save-seats" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full w-full focus:outline-none focus:shadow-outline mt-6">
-            Save Selected Seats
-        </button>
+        <!-- Right: Seat Map -->
+        <div id="seat-map-container">
+            <div id="seat-map"></div>
+        </div>
     </main>
 
-    <script src="js/seat-selection.js"></script>
+    <!-- JS script at bottom -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const flightDetailsElement = document.getElementById('flight-details');
+            const seatMapDiv = document.getElementById('seat-map');
+            const saveSeatsButton = document.getElementById('save-seats');
+
+            // Load flight information
+            const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
+            const { from, to, departure, return: returnDate, passengers } = bookingData;
+
+            if (from && to && departure && returnDate && passengers) {
+                flightDetailsElement.innerHTML = `<div>
+                    <div><span class="font-semibold">From:</span> ${from}</div>
+                    <div><span class="font-semibold">To:</span> ${to}</div>
+                    <div><span class="font-semibold">Departure:</span> ${departure}</div>
+                    <div><span class="font-semibold">Return:</span> ${returnDate}</div>
+                    <div>
+                        <span class="font-semibold">Passengers:</span> 
+                        ${passengers.adults} Adults, 
+                        ${passengers.children} Children, 
+                        ${passengers.infants} Infants
+                    </div> 
+                    </div>`
+                ;
+            } else {
+                flightDetailsElement.textContent = 'Flight details are not available.';
+            }
+
+            // Seat map setup
+            const selectedSeats = new Set(JSON.parse(localStorage.getItem('selectedSeats')) || []);
+            const presavedSeats = new Set(JSON.parse(localStorage.getItem('presavedSeats')) || []);
+
+            seatMapDiv.innerHTML = ""; // Clear previous
+
+            const rowLabels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+            for (let i = 0; i < rowLabels.length; i++) {
+                const rowDiv = document.createElement('div');
+                rowDiv.classList.add('flex', 'items-center', 'justify-center', 'gap-6', 'mb-4');
+
+                const leftGroup = document.createElement('div');
+                leftGroup.classList.add('flex', 'gap-2');
+                ['1', '2', '3'].forEach(number => {
+                    const seatId = `${rowLabels[i]}${number}`;
+                    const seat = createSeat(seatId);
+                    leftGroup.appendChild(seat);
+                });
+
+                const rightGroup = document.createElement('div');
+                rightGroup.classList.add('flex', 'gap-2');
+                ['4', '5', '6'].forEach(number => {
+                    const seatId = `${rowLabels[i]}${number}`;
+                    const seat = createSeat(seatId);
+                    rightGroup.appendChild(seat);
+                });
+
+                rowDiv.appendChild(leftGroup);
+                const aisle = document.createElement('div');
+                aisle.style.width = '40px';
+                rowDiv.appendChild(aisle);
+                rowDiv.appendChild(rightGroup);
+                seatMapDiv.appendChild(rowDiv);
+            }
+
+            function createSeat(seatId) {
+                const seatDiv = document.createElement('div');
+                seatDiv.classList.add('seat', 'text-black', 'flex', 'items-center', 'justify-center', 'cursor-pointer');
+                seatDiv.textContent = seatId;
+
+                if (selectedSeats.has(seatId)) {
+                    seatDiv.classList.add('bg-gray-500');
+                } else if (presavedSeats.has(seatId)) {
+                    seatDiv.classList.add('bg-gray-700');
+                }
+
+                seatDiv.addEventListener('click', () => {
+                    if (selectedSeats.has(seatId)) {
+                        selectedSeats.delete(seatId);
+                        seatDiv.classList.remove('bg-gray-500');
+                    } else {
+                        selectedSeats.add(seatId);
+                        seatDiv.classList.add('bg-gray-500');
+                    }
+                });
+
+                return seatDiv;
+            }
+
+            // Save seats
+            saveSeatsButton.addEventListener('click', () => {
+                localStorage.setItem('selectedSeats', JSON.stringify([...selectedSeats]));
+                alert('Selected seats saved!');
+            });
+        });
+    </script>
 </body>
 
 </html>

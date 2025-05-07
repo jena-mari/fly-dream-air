@@ -19,8 +19,11 @@ header {
     display: grid;
     grid-template-columns: repeat(6, 50px);
     gap: 10px;
-    justify-content: center;
-    margin: 20px 0;
+    justify-content: flex-end; /* Move seat map to the right side of the screen */
+}
+
+#seat-map div:nth-child(3n+4) {
+    margin-right: 5px; /* Reduce gap between 3rd and 4th columns */
 }
 
 .seat {
