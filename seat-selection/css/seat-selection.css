@@ -19,7 +19,7 @@ header {
     display: grid;
     grid-template-columns: repeat(6, 50px);
     gap: 10px;
-    justify-content: flex-end; /* Move seat map to the right side of the screen */
+    justify-content: flex-end; /* Align seat map to the right side of the screen */
 }
 
 #seat-map div:nth-child(3n+4) {
@@ -68,7 +68,6 @@ button {
 
 #seat-map-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: flex-end;
     width: 70%;
 }

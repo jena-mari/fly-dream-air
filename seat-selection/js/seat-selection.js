@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const flightDetailsElement = document.getElementById('flight-details');
     const seatMapDiv = document.getElementById('seat-map');
     const saveSeatsButton = document.getElementById('save-seats');
+    const ticketDetailsElement = document.getElementById('ticket-details');
 
     // Load flight information from localStorage
     const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
@@ -12,6 +13,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         flightDetailsElement.textContent = 'Flight details are not available.';
     }
+
+    // Calculate total tickets
+    const totalTickets = (passengers?.adults || 0) + (passengers?.children || 0) + (passengers?.infants || 0);
 
     // Generate seat map
     const rows = 6;
@@ -37,10 +41,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     seatDiv.classList.add('bg-yellow-500');
                     selectedSeats.add(seatId);
                 }
+                updateTicketInfo();
             });
             seatMapDiv.appendChild(seatDiv);
         }
     }
+
+    // Update ticket info
+    function updateTicketInfo() {
+        const selectedCount = selectedSeats.size;
+        const remainingSeats = totalTickets - selectedCount;
+        ticketDetailsElement.innerHTML = `
+            <div><strong>Total Tickets:</strong> ${totalTickets}</div>
+            <div><strong>Selected Seats:</strong> ${selectedCount}</div>
+            <div><strong>Seats Remaining:</strong> ${remainingSeats > 0 ? remainingSeats : 0}</div>
+        `;
+    }
+
+    // Initial ticket info update
+    updateTicketInfo();
 
     // Save selected seats to localStorage
     saveSeatsButton.addEventListener('click', () => {
