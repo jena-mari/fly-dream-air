@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const seatMapDiv = document.getElementById('seat-map');
     const saveSeatsButton = document.getElementById('save-seats');
     const ticketDetailsElement = document.getElementById('ticket-details');
+    const desiredTicketsElement = document.getElementById('desired-tickets'); // New section for desired tickets
 
     // Load flight information from localStorage
     const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
@@ -14,8 +15,19 @@ document.addEventListener('DOMContentLoaded', () => {
         flightDetailsElement.textContent = 'Flight details are not available.';
     }
 
+    // Get desired ticket numbers from localStorage
+    const { adults = 0, children = 0, infants = 0 } = passengers || {};
+
+    // Calculate desired tickets
+    const desiredTickets = adults + children + infants;
+
+    // Add the Desired Tickets section dynamically
+    desiredTicketsElement.innerHTML = `
+        <div><strong>Desired Tickets:</strong> ${desiredTickets}</div>
+    `;
+
     // Calculate total tickets
-    const totalTickets = (passengers?.adults || 0) + (passengers?.children || 0) + (passengers?.infants || 0);
+    const totalTickets = adults + children + infants;
 
     // Generate seat map
     const rows = 6;
@@ -66,4 +78,4 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('selectedSeats', JSON.stringify([...selectedSeats]));
         alert('Selected seats saved!');
     });
-});
+}); 
