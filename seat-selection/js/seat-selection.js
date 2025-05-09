@@ -2,12 +2,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const flightDetailsElement = document.getElementById('flight-details');
     const seatMapDiv = document.getElementById('seat-map');
     const saveSeatsButton = document.getElementById('save-seats');
-    const ticketDetailsElement = document.getElementById('ticket-details');
-    const desiredTicketsElement = document.getElementById('desired-tickets'); // New section for desired tickets
 
     // Load flight information from localStorage
     const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
     const { from, to, departure, return: returnDate, passengers } = bookingData;
+
+    // Calculate total desired tickets from passengers object
+    if (passengers && typeof passengers === 'object') {
+        const { adults = 0, children = 0, infants = 0 } = passengers;
+        const totalDesiredTickets = adults + children + infants;
+
+        // Create and append the info element
+        const totalTicketsInfo = document.createElement('div');
+        totalTicketsInfo.innerHTML = `<strong>Total number of desired tickets:</strong> ${totalDesiredTickets}`;
+        ticketDetailsElement.prepend(totalTicketsInfo); // Add at the top of ticket info box
+    }
+
 
     if (from && to && departure && returnDate && passengers) {
         flightDetailsElement.textContent = `From: ${from}, To: ${to}, Departure: ${departure}, Return: ${returnDate}, Passengers: ${passengers.adults} Adults, ${passengers.children} Children, ${passengers.infants} Infants`;
@@ -15,19 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         flightDetailsElement.textContent = 'Flight details are not available.';
     }
 
-    // Get desired ticket numbers from localStorage
-    const { adults = 0, children = 0, infants = 0 } = passengers || {};
 
-    // Calculate desired tickets
-    const desiredTickets = adults + children + infants;
-
-    // Add the Desired Tickets section dynamically
-    desiredTicketsElement.innerHTML = `
-        <div><strong>Desired Tickets:</strong> ${desiredTickets}</div>
-    `;
-
-    // Calculate total tickets
-    const totalTickets = adults + children + infants;
 
     // Generate seat map
     const rows = 6;
@@ -53,25 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     seatDiv.classList.add('bg-yellow-500');
                     selectedSeats.add(seatId);
                 }
-                updateTicketInfo();
             });
             seatMapDiv.appendChild(seatDiv);
         }
     }
-
-    // Update ticket info
-    function updateTicketInfo() {
-        const selectedCount = selectedSeats.size;
-        const remainingSeats = totalTickets - selectedCount;
-        ticketDetailsElement.innerHTML = `
-            <div><strong>Total Tickets:</strong> ${totalTickets}</div>
-            <div><strong>Selected Seats:</strong> ${selectedCount}</div>
-            <div><strong>Seats Remaining:</strong> ${remainingSeats > 0 ? remainingSeats : 0}</div>
-        `;
-    }
-
-    // Initial ticket info update
-    updateTicketInfo();
 
     // Save selected seats to localStorage
     saveSeatsButton.addEventListener('click', () => {
