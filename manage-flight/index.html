@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Information - FlyDreamAir</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/manage-flight.css" rel="stylesheet">
+</head>
+
+
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="text-xl font-semibold text-gray-800">FlyDreamAir!</a>
+            <nav class="space-x-4">
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Book</a>
+                <a href="/user-flight-info" class="text-gray-600 hover:text-blue-500 transition duration-300">Travel
+                    Info</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <!-- Flight History Section -->
+            <div class="mb-8">
+                <h2 class="history-heading text-gray-900 mb-6">MANAGE YOUR FLIGHT</h2>
+
+                <!-- Tab Content -->
+                <div id="upcoming" class="tab-content active">
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Flight Card -->
+                        <div class="flight-card p-6 mb-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <div>
+                                    <h2 class="text-xl font-semibold text-gray-800">Flight #FD1234</h2>
+                                    <p class="text-gray-600">Sydney (SYD) → Melbourne (MEL)</p>
+                                </div>
+                                <span class="status-badge status-confirmed">Confirmed</span>
+                            </div>
+
+                            <!-- Flight Details -->
+                            <div class="grid grid-cols-3 gap-8">
+                                <!-- Departure -->
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-800">10:30 AM</p>
+                                    <p class="text-gray-600">Sydney (SYD)</p>
+                                    <p class="text-sm text-gray-500">Terminal 1</p>
+                                </div>
+
+                                <!-- Flight Duration -->
+                                <div class="flight-info px-8 flex flex-col items-center justify-center">
+                                    <p class="text-gray-600">1h 30m</p>
+                                    <div class="w-full h-0.5 bg-gray-300 my-2"></div>
+                                    <p class="text-sm text-gray-500">Direct Flight</p>
+                                </div>
+
+                                <!-- Arrival -->
+                                <div class="text-center">
+                                    <p class="text-2xl font-bold text-gray-800">12:00 PM</p>
+                                    <p class="text-gray-600">Melbourne (MEL)</p>
+                                    <p class="text-sm text-gray-500">Terminal 2</p>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="mt-8 grid grid-cols-3 gap-6">
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Passenger Information</h3>
+                                    <p class="text-gray-600">John Doe</p>
+                                    <p class="text-gray-600">Seat: 12A</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Flight Details</h3>
+                                    <p class="text-gray-600">Aircraft: Boeing 737-800</p>
+                                    <p class="text-gray-600">Flight Class: Economy</p>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Booking Information</h3>
+                                    <p class="text-gray-600">Booking Date: 15 Mar 2024</p>
+                                    <p class="text-gray-600">Booking ID: BK123456</p>
+                                    <p class="text-gray-600">Flight Number: FD1234</p>
+                                    <p class="text-gray-600">Price: $299.00</p>
+                                </div>
+                            </div>
+
+                            <!-- Total Flight Expenses Section -->
+                            <div class="mt-4">
+                                <div class="rounded-lg border border-black-900 bg-white shadow-md overflow-hidden">
+                                    <div class="px-2 py-1 border-b border-black-900 flex items-center">
+                                        <h2 class="text-lg font-extrabold text-black-900 mr-2"
+                                            style="font-family: 'Montserrat', sans-serif;">Total Flight Expenses</h2>
+                                    </div>
+                                    <div class="px-2 py-1 bg-white">
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-semibold text-gray-600 text-sm"
+                                                style="font-family: 'Montserrat', sans-serif;">Your Flight</span>
+                                            <span class="font-extrabold text-base text-black-900"
+                                                style="font-family: 'Montserrat', sans-serif;">$500.00</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-semibold text-gray-600 text-sm"
+                                                style="font-family: 'Montserrat', sans-serif;">Checked-in Baggage</span>
+                                            <span class="font-extrabold text-base text-black-900"
+                                                style="font-family: 'Montserrat', sans-serif;">$25.00</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-semibold text-gray-600 text-sm"
+                                                style="font-family: 'Montserrat', sans-serif;">Menu</span>
+                                            <span class="font-extrabold text-base text-black-900"
+                                                style="font-family: 'Montserrat', sans-serif;">$15.00</span>
+                                        </div>
+                                        <div class="flex justify-between items-center mb-2">
+                                            <span class="font-semibold text-gray-600 text-sm"
+                                                style="font-family: 'Montserrat', sans-serif;">Other Add-Ons</span>
+                                            <span class="font-extrabold text-base text-black-900"
+                                                style="font-family: 'Montserrat', sans-serif;">$50.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="px-2 py-1 bg-black-200 flex justify-between items-center rounded-b-lg">
+                                        <span class="font-extrabold text-lg text-black-900"
+                                            style="font-family: 'Montserrat', sans-serif;">TOTAL</span>
+                                        <span class="font-extrabold text-lg text-black-900"
+                                            style="font-family: 'Montserrat', sans-serif;">$590.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Concerns With Your Flight Section -->
+                            <div class="mt-8 max-w-3xl mx-auto">
+                                <h2 class="text-3xl font-bold mb-1" style="font-family: 'Montserrat', sans-serif;">Any
+                                    concerns with your flight?</h2>
+                                <p class="text-2xl font-bold italic mb-4"
+                                    style="font-family: 'Montserrat', sans-serif;">We're here to help.</p>
+                                <hr class="border-black mb-6">
+                                <form class="space-y-4">
+                                    <div class="grid grid-cols-6 gap-4">
+                                        <div class="col-span-1">
+                                            <label class="block font-bold text-base mb-1">Title</label>
+                                            <select class="w-full border border-black rounded px-2 py-1">
+                                                <option>Ms.</option>
+                                                <option>Mr.</option>
+                                                <option>Mrs.</option>
+                                                <option>Dr.</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <label class="block font-bold text-base mb-1">Given/First Name</label>
+                                            <input type="text" class="w-full border border-black rounded px-2 py-1"
+                                                placeholder="Enter name here...">
+                                        </div>
+                                        <div class="col-span-3">
+                                            <label class="block font-bold text-base mb-1">Family Last Name</label>
+                                            <input type="text" class="w-full border border-black rounded px-2 py-1"
+                                                placeholder="Enter name here...">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-6 gap-4">
+                                        <div class="col-span-2">
+                                            <label class="block font-bold text-base mb-1">Country Code</label>
+                                            <select class="w-full border border-black rounded px-2 py-1">
+                                                <option>+61</option>
+                                                <option>+1</option>
+                                                <option>+44</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <label class="block font-bold text-base mb-1">Mobile Number</label>
+                                            <input type="text" class="w-full border border-black rounded px-2 py-1"
+                                                placeholder="4XX XXX XXX">
+                                        </div>
+                                        <div class="col-span-2">
+                                            <label class="block font-bold text-base mb-1">Email</label>
+                                            <input type="email" class="w-full border border-black rounded px-2 py-1"
+                                                placeholder="Enter email address here...">
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label class="block font-bold text-base mb-1">Passport Number</label>
+                                            <input type="text" class="w-full border border-black rounded px-2 py-1"
+                                                placeholder="Enter passport number here...">
+                                        </div>
+                                        <div>
+                                            <label class="block font-bold text-base mb-1">Booking Reference</label>
+                                            <input type="text" class="w-full border border-black rounded px-2 py-1"
+                                                placeholder="Enter booking reference here...">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block font-bold text-base mb-2">Your Concern</label>
+                                        <div class="grid grid-cols-2 gap-4 mb-2">
+                                            <button type="button"
+                                                class="border border-black rounded px-2 py-2 text-left font-normal concern-btn"><span>I
+                                                    would like to <span class="font-bold">reschedule</span> my
+                                                    flight.</span></button>
+                                            <button type="button"
+                                                class="border border-black rounded px-2 py-2 text-left font-normal concern-btn">I
+                                                have other concerns.</button>
+                                            <button type="button"
+                                                class="border border-black rounded px-2 py-2 text-left font-normal col-span-2 concern-btn">I
+                                                would like to <span class="font-bold">cancel</span> my flight.</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block font-bold text-base mb-2">Elaborate your concerns
+                                            here...</label>
+                                        <textarea class="w-full border border-black rounded px-2 py-2 min-h-[120px]"
+                                            placeholder=""></textarea>
+                                    </div>
+                                    <div class="flex justify-center">
+                                        <button type="submit"
+                                            class="bg-black text-white font-bold rounded px-8 py-2 mt-2">SUBMIT</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <script src="js/manage-flight.js"></script>
+</body>
+
+</html>
