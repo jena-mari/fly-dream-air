@@ -16,7 +16,7 @@
         <div class="container mx-auto flex justify-between items-center px-4">
             <a href="/" class="text-xl font-semibold text-gray-800">FlyDreamAir!</a>
             <nav class="space-x-4">
-                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Book</a>
+                <a href="/" class="text-gray-600 hover:text-blue-500 transition duration-300">Book</a>
                 <a href="/user-flight-info" class="text-gray-600 hover:text-blue-500 transition duration-300">Travel
                     Info</a>
                 <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
@@ -36,54 +36,54 @@
                         <div class="flight-card p-6 mb-6">
                             <div class="flex justify-between items-center mb-6">
                                 <div>
-                                    <h2 class="text-xl font-semibold text-gray-800">Flight #FD1234</h2>
-                                    <p class="text-gray-600">Sydney (SYD) → Melbourne (MEL)</p>
+                                    <h2 class="flight-number text-xl font-semibold text-gray-800">Flight #FD1234</h2>
+                                    <p class="flight-route text-gray-600">Sydney (SYD) → Melbourne (MEL)</p>
                                 </div>
-                                <span class="status-badge status-confirmed">Confirmed</span>
+                                <span class="flight-status status-badge status-confirmed">Confirmed</span>
                             </div>
 
                             <!-- Flight Details -->
                             <div class="grid grid-cols-3 gap-8">
                                 <!-- Departure -->
-                                <div class="text-center">
-                                    <p class="text-2xl font-bold text-gray-800">10:30 AM</p>
-                                    <p class="text-gray-600">Sydney (SYD)</p>
-                                    <p class="text-sm text-gray-500">Terminal 1</p>
+                                <div class="departure-info text-center">
+                                    <p class="departure-time text-2xl font-bold text-gray-800">10:30 AM</p>
+                                    <p class="departure-airport text-gray-600">Sydney (SYD)</p>
+                                    <p class="departure-terminal text-sm text-gray-500">Terminal 1</p>
                                 </div>
 
                                 <!-- Flight Duration -->
                                 <div class="flight-info px-8 flex flex-col items-center justify-center">
-                                    <p class="text-gray-600">1h 30m</p>
+                                    <p class="flight-duration text-gray-600">1h 30m</p>
                                     <div class="w-full h-0.5 bg-gray-300 my-2"></div>
-                                    <p class="text-sm text-gray-500">Direct Flight</p>
+                                    <p class="flight-type text-sm text-gray-500">Direct Flight</p>
                                 </div>
 
                                 <!-- Arrival -->
-                                <div class="text-center">
-                                    <p class="text-2xl font-bold text-gray-800">12:00 PM</p>
-                                    <p class="text-gray-600">Melbourne (MEL)</p>
-                                    <p class="text-sm text-gray-500">Terminal 2</p>
+                                <div class="arrival-info text-center">
+                                    <p class="arrival-time text-2xl font-bold text-gray-800">12:00 PM</p>
+                                    <p class="arrival-airport text-gray-600">Melbourne (MEL)</p>
+                                    <p class="arrival-terminal text-sm text-gray-500">Terminal 2</p>
                                 </div>
                             </div>
 
                             <!-- Additional Information -->
                             <div class="mt-8 grid grid-cols-3 gap-6">
-                                <div>
+                                <div class="passenger-info">
                                     <h3 class="font-semibold text-gray-800 mb-2">Passenger Information</h3>
-                                    <p class="text-gray-600">John Doe</p>
-                                    <p class="text-gray-600">Seat: 12A</p>
+                                    <p class="passenger-name text-gray-600">John Doe</p>
+                                    <p class="passenger-seat text-gray-600">Seat: 12A</p>
                                 </div>
-                                <div>
+                                <div class="flight-details-info">
                                     <h3 class="font-semibold text-gray-800 mb-2">Flight Details</h3>
-                                    <p class="text-gray-600">Aircraft: Boeing 737-800</p>
-                                    <p class="text-gray-600">Flight Class: Economy</p>
+                                    <p class="aircraft-info text-gray-600">Aircraft: Boeing 737-800</p>
+                                    <p class="flight-class text-gray-600">Flight Class: Economy</p>
                                 </div>
-                                <div>
+                                <div class="booking-info">
                                     <h3 class="font-semibold text-gray-800 mb-2">Booking Information</h3>
-                                    <p class="text-gray-600">Booking Date: 15 Mar 2024</p>
-                                    <p class="text-gray-600">Booking ID: BK123456</p>
-                                    <p class="text-gray-600">Flight Number: FD1234</p>
-                                    <p class="text-gray-600">Price: $299.00</p>
+                                    <p class="booking-date text-gray-600">Booking Date: 15 Mar 2024</p>
+                                    <p class="booking-id text-gray-600">Booking ID: BK123456</p>
+                                    <p class="flight-number-info text-gray-600">Flight Number: FD1234</p>
+                                    <p class="booking-price text-gray-600">Price: $299.00</p>
                                 </div>
                             </div>
 
@@ -186,7 +186,8 @@
                                         </div>
                                         <div>
                                             <label class="block font-bold text-base mb-1">Booking Reference</label>
-                                            <input type="text" class="w-full border border-black rounded px-2 py-1"
+                                            <input type="text"
+                                                class="booking-reference-input w-full border border-black rounded px-2 py-1"
                                                 placeholder="Enter booking reference here...">
                                         </div>
                                     </div>
