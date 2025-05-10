@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const flightDetailsElement = document.getElementById('flight-details');
     const seatMapDiv = document.getElementById('seat-map');
     const saveSeatsButton = document.getElementById('save-seats');
+    const ticketDetailsElement = document.getElementById('ticket-details');
+    console.log(document.getElementById('ticket-details'));
 
     // Load flight information from localStorage
     const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
@@ -11,16 +13,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (passengers && typeof passengers === 'object') {
         const { adults = 0, children = 0, infants = 0 } = passengers;
         const totalDesiredTickets = adults + children + infants;
-
-        // Create and append the info element
-        const totalTicketsInfo = document.createElement('div');
-        totalTicketsInfo.innerHTML = `<strong>Total number of desired tickets:</strong> ${totalDesiredTickets}`;
-        ticketDetailsElement.prepend(totalTicketsInfo); // Add at the top of ticket info box
+        
+        ticketDetailsElement.innerHTML = `
+            <div><strong>Total Desired Tickets:</strong> ${totalDesiredTickets}</div>
+        `;
+    } else {
+        ticketDetailsElement.textContent = 'Passenger information is missing.';
     }
 
 
     if (from && to && departure && returnDate && passengers) {
-        flightDetailsElement.textContent = `From: ${from}, To: ${to}, Departure: ${departure}, Return: ${returnDate}, Passengers: ${passengers.adults} Adults, ${passengers.children} Children, ${passengers.infants} Infants`;
+        // Structure the flight details with keys bolded and each item on a new line
+        flightDetailsElement.innerHTML = `
+            <div><strong>From:</strong> ${from}</div>
+            <div><strong>To:</strong> ${to}</div>
+            <div><strong>Departure:</strong> ${departure}</div>
+            <div><strong>Return:</strong> ${returnDate}</div>
+            <div><strong>Passengers:</strong> ${passengers.adults} Adults, ${passengers.children} Children, ${passengers.infants} Infants</div>
+        `;    
     } else {
         flightDetailsElement.textContent = 'Flight details are not available.';
     }
