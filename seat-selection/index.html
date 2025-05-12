@@ -50,7 +50,7 @@
 <body class="bg-gray-100">
     <header class="bg-white py-4 shadow-md">
         <div class="container mx-auto flex justify-between items-center px-4">
-            <a href="#" class="text-xl font-semibold text-gray-800">FlyDreamAir!</a>
+            <a href="#" class="text-xl font-semibold text-gray-800">FlyDreamAir</a>
             <nav class="space-x-4">
                 <a href="/" class="text-gray-600 hover:text-blue-500 transition duration-300">Book</a>
                 <a href="/user-flight-info" class="text-gray-600 hover:text-blue-500 transition duration-300">Travel
@@ -64,7 +64,7 @@
     <main class="container mx-auto px-4 py-10 flex justify-between items-start gap-6">
         <!-- Left: Flight Info -->
         <div id="flight-info" class="bg-white rounded-lg shadow-lg p-6 w-1/3">
-            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Flight Details!</h2>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Flight Details</h2>
             <div id="flight-details" class="text-gray-600 space-y-1">
                 <!-- JS will fill this in -->
             </div>
@@ -74,7 +74,7 @@
             </button>
         </div>
 
-        <!-- Right: Seat Map and Ticket Info -->
+        <!-- Right: Seat Map -->
         <div id="seat-map-container" class="flex flex-col items-end gap-6">
             <div id="seat-map"></div>
         </div>
@@ -83,7 +83,9 @@
         <div id="ticket-info" class="bg-white rounded-lg shadow-lg p-6 w-1/3">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4">Ticket Info</h2>
 
-            <div id="desired-tickets" style="margin-bottom: 1rem;"></div>
+            <div id="ticket-details" style="margin-bottom: 1rem;" class="text-gray-600 space-y-1">
+
+            </div>
 
             <a href="#" id="next-page-btn"
                 class="block bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-3 px-6 rounded-full mt-6">
@@ -188,6 +190,7 @@
             });
         });
     </script>
+    <script src="js/seat-selection.js"></script>
 </body>
 
 </html>

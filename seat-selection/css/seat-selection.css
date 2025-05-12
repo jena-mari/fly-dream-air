@@ -91,3 +91,9 @@ button:hover {
     margin-top: 20px;
     align-self: flex-start;
 }
+
+#ticket-details {
+  border: 1px solid red;
+  color: black;
+  display: block;
+}
