@@ -17,6 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
         ticketDetailsElement.innerHTML = `
             <div><strong>Total Desired Tickets:</strong> ${totalDesiredTickets}</div>
         `;
+
+        // Add a new line in the ticket info div for selected seats
+        const selectedSeatsInfo = document.createElement('div');
+        selectedSeatsInfo.id = 'selected-seats-info';
+        selectedSeatsInfo.textContent = 'Number of selected seats: Please save some seats.';
+        ticketDetailsElement.appendChild(selectedSeatsInfo);
+
+        const nextPageButton = document.getElementById('next-page-btn');
+        nextPageButton.style.pointerEvents = 'none'; // Disable the button initially
+        nextPageButton.style.opacity = '0.5'; // Grey out the button initially
+
+        saveSeatsButton.addEventListener('click', () => {
+            const selectedSeats = JSON.parse(localStorage.getItem('selectedSeats')) || [];
+            const selectedSeatsCount = selectedSeats.length;
+
+            selectedSeatsInfo.textContent = `Number of selected seats: ${selectedSeatsCount}`;
+
+            if (selectedSeatsCount === totalDesiredTickets) {
+                nextPageButton.style.pointerEvents = 'auto'; // Enable the button
+                nextPageButton.style.opacity = '1'; // Ungrey the button
+            } else {
+                nextPageButton.style.pointerEvents = 'none'; // Disable the button
+                nextPageButton.style.opacity = '0.5'; // Grey out the button
+            }
+        });
     } else {
         ticketDetailsElement.textContent = 'Passenger information is missing.';
     }
