@@ -87,7 +87,8 @@
 
             </div>
 
-            <a href="../add-on-purchase/index.html" id="next-page-btn" class="block bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-3 px-6 rounded-full mt-6">
+            <a href="../add-on-purchase/" id="next-page-btn"
+                class="block bg-blue-500 hover:bg-blue-700 text-white text-center font-bold py-3 px-6 rounded-full mt-6">
                 Next Page
             </a>
         </div>
@@ -139,6 +140,9 @@
                 ['1', '2', '3'].forEach(number => {
                     const seatId = `${rowLabels[i]}${number}`;
                     const seat = createSeat(seatId);
+                    if (i < 2) {
+                        seat.style.backgroundColor = '#AFE1AF';
+                    }
                     leftGroup.appendChild(seat);
                 });
 
@@ -147,6 +151,9 @@
                 ['4', '5', '6'].forEach(number => {
                     const seatId = `${rowLabels[i]}${number}`;
                     const seat = createSeat(seatId);
+                    if (i < 2) {
+                        seat.style.backgroundColor = '#AFE1AF';
+                    }
                     rightGroup.appendChild(seat);
                 });
 
@@ -172,10 +179,18 @@
                 seatDiv.addEventListener('click', () => {
                     if (selectedSeats.has(seatId)) {
                         selectedSeats.delete(seatId);
-                        seatDiv.classList.remove('bg-gray-500');
+                        if (seatDiv.style.backgroundColor === 'rgb(0, 158, 96)') { // #009E60 in RGB
+                            seatDiv.style.backgroundColor = '#AFE1AF';
+                        } else {
+                            seatDiv.classList.remove('bg-gray-500');
+                        }
                     } else {
                         selectedSeats.add(seatId);
-                        seatDiv.classList.add('bg-gray-500');
+                        if (seatDiv.style.backgroundColor === 'rgb(175, 225, 175)') { // #AFE1AF in RGB
+                            seatDiv.style.backgroundColor = '#009E60';
+                        } else {
+                            seatDiv.classList.add('bg-gray-500');
+                        }
                     }
                 });
 
