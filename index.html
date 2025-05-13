@@ -277,6 +277,23 @@
         document.addEventListener('DOMContentLoaded', function () {
             const bookNowButton = document.getElementById('book-now');
 
+            // Function to get airport code from city name
+            function getAirportCode(cityName) {
+                const airportCodes = {
+                    'SYDNEY': 'SYD',
+                    'MANILA': 'MNL',
+                    'MELBOURNE': 'MEL',
+                    'BRISBANE': 'BNE',
+                    'PERTH': 'PER',
+                    'ADELAIDE': 'ADL',
+                    'DARWIN': 'DRW',
+                    'HOBART': 'HBA',
+                    'CAIRNS': 'CNS',
+                    'GOLD COAST': 'OOL'
+                };
+                return airportCodes[cityName] || cityName;
+            }
+
             bookNowButton.addEventListener('click', function (e) {
                 e.preventDefault();
 
@@ -289,23 +306,26 @@
                 const children = document.getElementById('children').value;
                 const infants = document.getElementById('infants').value;
 
-                // Save to localStorage
-                const bookingData = {
-                    from: fromLocation,
-                    to: toLocation,
-                    departure: departureDate,
-                    return: returnDate,
-                    passengers: {
-                        adults: parseInt(adults),
-                        children: parseInt(children),
-                        infants: parseInt(infants)
-                    }
+                // Get city names and convert to airport codes
+                const fromCity = fromLocation.split(',')[0].trim().toUpperCase();
+                const toCity = toLocation.split(',')[0].trim().toUpperCase();
+
+                // Save to localStorage with new structure using form values
+                const flightSearch = {
+                    tripType: "one-way",
+                    adults: parseInt(adults),
+                    children: parseInt(children),
+                    classType: "Economy",
+                    departure: getAirportCode(fromCity),
+                    arrival: getAirportCode(toCity),
+                    departureDate: departureDate,
+                    arrivalDate: returnDate
                 };
 
-                localStorage.setItem('bookingData', JSON.stringify(bookingData));
+                localStorage.setItem('flightSearch', JSON.stringify(flightSearch));
 
                 // Redirect to seat selection page
-                window.location.href = '/seat-selection';
+                window.location.href = '/book-flight';
             });
         });
 

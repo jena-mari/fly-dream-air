@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Success</title>
+    <link rel="stylesheet" href="css/booking-success.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="modal-overlay" id="bookingSuccessModal">
+        <div class="modal-content">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z" fill="currentColor" />
+                </svg>
+            </div>
+            <h2>Booking Successful!</h2>
+            <p>Your flight has been successfully booked.</p>
+            <div class="booking-details">
+                <div class="detail-item">
+                    <span class="label">Booking Reference:</span>
+                    <span class="value" id="bookingReference">FD123456</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Flight Number:</span>
+                    <span class="value" id="flightNumber">FD789</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Date:</span>
+                    <span class="value" id="flightDate">June 15, 2024</span>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <button class="btn-secondary" id="viewBookingBtn">View Booking</button>
+                <button class="btn-primary" id="closeModalBtn">Close</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/booking-success.js"></script>
+</body>
+
+</html>
