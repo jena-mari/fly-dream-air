@@ -60,14 +60,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validateBaggageCount() {
         const totalBaggageCount = Object.values(baggageCounts).reduce((sum, count) => sum + count, 0);
+
+        // First remove any conflicting background classes
+        checkedBaggageDiv.classList.remove('bg-red-100', 'bg-gray-300');
+
+        // Add correct one
         if (totalBaggageCount === totalTickets) {
-            checkedBaggageDiv.classList.remove('bg-red-100');
             checkedBaggageDiv.classList.add('bg-gray-300');
         } else {
-            checkedBaggageDiv.classList.remove('bg-gray-300');
             checkedBaggageDiv.classList.add('bg-red-100');
         }
     }
+
 
     // Initial validation
     validateBaggageCount();
