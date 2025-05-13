@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlyDreamAir | Flight Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/user-flight-info/css/user-flight-info.css" rel="stylesheet">
+</head>
+
+
+<body class="bg-gray-100 min-h-screen">
+    <header class="bg-white py-4 shadow-md">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="/" class="text-xl font-semibold text-gray-800">FlyDreamAir!</a>
+            <nav class="space-x-4">
+                <a href="/book-flight" class="text-gray-600 hover:text-blue-500 transition duration-300">Book</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">Travel
+                    Info</a>
+                <a href="#" class="text-gray-600 hover:text-blue-500 transition duration-300">About</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container mx-auto px-4 py-8">
+        <div class="max-w-3xl mx-auto">
+            <!-- Flight History Section -->
+            <div class="mb-8">
+                <h2 class="history-heading text-gray-900 mb-6">FLIGHT HISTORY</h2>
+
+                <!-- Tabs -->
+                <div class="border-b border-gray-200 mb-6">
+                    <div class="flex space-x-8">
+                        <button onclick="switchTab('upcoming')" class="tab-button tab-active py-2 font-medium">
+                            Upcoming Flights
+                        </button>
+                        <button onclick="switchTab('past')" class="tab-button py-2 font-medium text-gray-500">
+                            Past Flights
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="upcoming" class="tab-content active">
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Flight cards will be dynamically inserted here -->
+                    </div>
+                </div>
+
+                <div id="past" class="tab-content">
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Flight cards will be dynamically inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/user-flight-info/js/user-flight-info.js"></script>
+</body>
+
+</html>
