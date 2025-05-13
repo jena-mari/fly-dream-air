@@ -184,5 +184,5 @@ function bookFlight(flight) {
     arrivalDate: document.getElementById('arrivalDate').value,
   };
   localStorage.setItem('bookingInfo', JSON.stringify(bookingDetails));
-  window.location.href = 'addons.html';
+  window.location.href = '/add-on-purchase/index.html';
 }
