@@ -1,4 +1,3 @@
-
 tailwind.config = {
   theme: {
     extend: {
@@ -10,69 +9,69 @@ tailwind.config = {
         bgLight: '#F2F2F7',
         accentGray: '#D1D5DB',
         blueText: '#3D52A2',
-      }
-    }
-  }
-}
+      },
+    },
+  },
+};
 
 //  Utility: Format a date string to yyyy-mm-dd
 function formatDateInput(dateStr) {
   const currentYear = new Date().getFullYear();
   const fullDateStr = `${dateStr}, ${currentYear}`;
   const date = new Date(fullDateStr);
-  if (isNaN(date)) return "";
-  return date.toISOString().split("T")[0];
+  if (isNaN(date)) return '';
+  return date.toISOString().split('T')[0];
 }
 
 function validatePayment() {
-  const name = document.getElementById("cardName").value.trim();
-  const number = document.getElementById("cardNumber").value.replace(/\s+/g, '');
-  const exp = document.getElementById("expDate").value;
-  const cvv = document.getElementById("cvv").value;
+  const name = document.getElementById('cardName').value.trim();
+  const number = document.getElementById('cardNumber').value.replace(/\s+/g, '');
+  const exp = document.getElementById('expDate').value;
+  const cvv = document.getElementById('cvv').value;
 
   if (!name || !number || !exp || !cvv) {
-    alert("Please fill in all payment fields.");
+    alert('Please fill in all payment fields.');
     return;
   }
 
   if (!/^\d{16}$/.test(number)) {
-    alert("Card number must be 16 digits (no spaces).");
+    alert('Card number must be 16 digits (no spaces).');
     return;
   }
 
   if (!/^\d{3,4}$/.test(cvv)) {
-    alert("CVV must be 3 or 4 digits.");
+    alert('CVV must be 3 or 4 digits.');
     return;
   }
 
   const today = new Date();
-  const [year, month] = exp.split("-");
+  const [year, month] = exp.split('-');
   const expDate = new Date(year, month);
   if (expDate <= today) {
-    alert("Card is expired.");
+    alert('Card is expired.');
     return;
   }
 
-  alert("Payment successful! Redirecting...");
+  alert('Payment successful! Redirecting...');
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const bookingInfo = JSON.parse(localStorage.getItem("bookingInfo")) || {};
-  const flight = JSON.parse(localStorage.getItem("selectedFlight")) || {};
-  const addons = JSON.parse(localStorage.getItem("addons")) || {};
-  const seatUpgrade = parseFloat(localStorage.getItem("seatUpgrade")) || 0;
+document.addEventListener('DOMContentLoaded', () => {
+  const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
+  const flight = JSON.parse(localStorage.getItem('selectedFlight')) || {};
+  const addons = JSON.parse(localStorage.getItem('addons')) || {};
+  const seatUpgrade = parseFloat(localStorage.getItem('seatUpgrade')) || 0;
 
-  document.getElementById("tripType").value = bookingInfo.tripType || "round-trip";
-  document.getElementById("adultCount").value = bookingInfo.adults || "1";
-  document.getElementById("childCount").value = bookingInfo.children || "0";
-  document.getElementById("classType").value = bookingInfo.classType || "Economy";
+  document.getElementById('tripType').value = bookingInfo.tripType || 'round-trip';
+  document.getElementById('adultCount').value = bookingInfo.adults || '1';
+  document.getElementById('childCount').value = bookingInfo.children || '0';
+  document.getElementById('classType').value = bookingInfo.classType || 'Economy';
 
-  document.getElementById("departure").value = flight.from || bookingInfo.departure || "";
-  document.getElementById("arrival").value = flight.to || bookingInfo.arrival || "";
-  document.getElementById("departureDate").value = bookingInfo.departureDate || "";
-  document.getElementById("arrivalDate").value = bookingInfo.arrivalDate || "";
+  document.getElementById('departure').value = flight.from || bookingInfo.departure || '';
+  document.getElementById('arrival').value = flight.to || bookingInfo.arrival || '';
+  document.getElementById('departureDate').value = bookingInfo.departureDate || '';
+  document.getElementById('arrivalDate').value = bookingInfo.arrivalDate || '';
 
-  const container = document.getElementById("selectedFlightCard");
+  const container = document.getElementById('selectedFlightCard');
   if (!flight) {
     container.innerHTML = "<p class='text-center text-gray-500'>No flight selected.</p>";
   } else {
@@ -105,8 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   }
 
-  const addonsSummaryEl = document.querySelector(".addons-summary");
-  const grandTotalEl = document.getElementById("grandTotal");
+  const addonsSummaryEl = document.querySelector('.addons-summary');
+  const grandTotalEl = document.getElementById('grandTotal');
 
   const adults = parseInt(bookingInfo.adults) || 0;
   const children = parseInt(bookingInfo.children) || 0;
@@ -121,13 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const priority = parseFloat(addons.priority) || 0;
 
   const total =
-    totalTicketCost +
-    checkedBaggage +
-    meal +
-    insurance +
-    entertainment +
-    priority +
-    seatUpgrade;
+    totalTicketCost + checkedBaggage + meal + insurance + entertainment + priority + seatUpgrade;
 
   addonsSummaryEl.innerHTML = `
     <li class="flex justify-between"><span>Ticket Price (${totalPassengers} Pax)</span><span>$${totalTicketCost.toFixed(2)}</span></li>
