@@ -5,14 +5,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const bookingData = JSON.parse(localStorage.getItem('bookingData')) || {};
     const { from, to, departure, return: returnDate, passengers } = bookingData;
 
-    if (from && to && departure && returnDate && passengers) {
-        flightInfoDiv.innerHTML = `
-            <div><span>From:</span> ${from}</div>
-            <div><span>To:</span> ${to}</div>
-            <div><span>Departure:</span> ${departure}</div>
-            <div><span>Return:</span> ${returnDate}</div>
-            <div><span>Passengers:</span> ${passengers.adults} Adults, ${passengers.children} Children, ${passengers.infants} Infants</div>
-        `;
+    if (from && to && departure && returnDate) {
+        document.getElementById('from-location').textContent = from;
+        document.getElementById('departure-date').textContent = departure;
+        document.getElementById('to-location').textContent = to;
+        document.getElementById('return-date').textContent = returnDate;
     } else {
         flightInfoDiv.textContent = 'Flight details are not available.';
     }

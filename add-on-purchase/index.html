@@ -51,10 +51,78 @@
     </header>
 
     <main class="container mx-auto px-4 py-10">
-        <div class="ticket-box">
-            <h2>Flight Information</h2>
-            <div id="flight-info">
-                <!-- Flight info will be dynamically loaded here -->
+        <div class="ticket-box flex justify-between items-center">
+            <div class="text-left">
+                <div id="from-location" class="text-lg font-semibold"></div>
+                <div id="departure-date" class="text-sm text-gray-600"></div>
+            </div>
+            <div class="text-center">
+                <img src="../img/plane-vector.png" alt="Arrow" class="h-6 mx-auto">
+            </div>
+            <div class="text-right">
+                <div id="to-location" class="text-lg font-semibold"></div>
+                <div id="return-date" class="text-sm text-gray-600"></div>
+            </div>
+        </div>
+
+            <!-- Step Progress -->
+    <div
+        class="bg-[#6AABDD] rounded-xl w-[1025px] mx-auto mt-6 shadow-md px-6 py-3 flex justify-between items-center text-white text-sm font-semibold">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-center w-1/4 relative">
+            <div
+                class="absolute -top-8 bg-white text-[#263FAD] w-9 h-9 rounded-full flex items-center justify-center font-bold border border-gray-300">
+                1
+            </div>
+            <span class="mt-3 text-darkblue font-bold">
+                Choose Flight
+            </span>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex flex-col items-center w-1/4 relative">
+            <div
+                class="absolute -top-8 bg-white text-[#6A7BD9] w-9 h-9 rounded-full flex items-center justify-center font-bold border border-gray-300">
+                2
+            </div>
+            <span class="mt-3 text-white">
+                Add-Ons
+            </span>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex flex-col items-center w-1/4 relative">
+            <div
+                class="absolute -top-8 bg-white text-[#6A7BD9] w-9 h-9 rounded-full flex items-center justify-center font-bold border border-gray-300">
+                3
+            </div>
+            <span class="mt-3 text-white">
+                Seat Selection
+            </span>
+        </div>
+        <!-- Step 4 -->
+        <div class="flex flex-col items-center w-1/4 relative">
+            <div
+                class="absolute -top-8 bg-white text-[#6A7BD9] w-8 h-8 rounded-full flex items-center justify-center font-bold border border-gray-300">
+                4
+            </div>
+            <span class="mt-3 text-white">
+                Payment
+            </span>
+        </div>
+    </div>
+
+        <!-- Checked-Baggage Section -->
+        <div class="bg-white rounded-xl shadow-md px-6 py-4 mt-8">
+            <h2 class="text-center text-2xl font-semibold mb-6">Checked-Baggage</h2>
+            <div class="flex justify-between items-center">
+                <div class="bg-gray-100 rounded-lg shadow-md w-1/4 h-32 flex flex-col justify-center items-center">
+                    <h3 class="text-lg font-semibold">7kg</h3>
+                </div>
+                <div class="bg-gray-100 rounded-lg shadow-md w-1/4 h-32 flex flex-col justify-center items-center">
+                    <h3 class="text-lg font-semibold">10kg</h3>
+                </div>
+                <div class="bg-gray-100 rounded-lg shadow-md w-1/4 h-32 flex flex-col justify-center items-center">
+                    <h3 class="text-lg font-semibold">20kg</h3>
+                </div>
             </div>
         </div>
     </main>
