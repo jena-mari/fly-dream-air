@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const ticketCountDiv = document.getElementById('ticket-count');
+    const checkedBaggageDiv = document.querySelector('.bg-gray-300'); // Checked-baggage div
 
     // Get booking info from localStorage
     const bookingInfo = JSON.parse(localStorage.getItem('bookingInfo')) || {};
@@ -35,6 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (baggageCounts[weight] > 0) {
                 baggageCounts[weight]--;
                 updateCounter(weight);
+                validateBaggageCount();
             }
         });
     });
@@ -45,6 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const weight = button.dataset.weight;
             baggageCounts[weight]++;
             updateCounter(weight);
+            validateBaggageCount();
         });
     });
 
@@ -54,4 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
             counter.textContent = baggageCounts[weight];
         }
     }
+
+    function validateBaggageCount() {
+        const totalBaggageCount = Object.values(baggageCounts).reduce((sum, count) => sum + count, 0);
+        if (totalBaggageCount === totalTickets) {
+            checkedBaggageDiv.classList.remove('bg-red-100');
+            checkedBaggageDiv.classList.add('bg-gray-300');
+        } else {
+            checkedBaggageDiv.classList.remove('bg-gray-300');
+            checkedBaggageDiv.classList.add('bg-red-100');
+        }
+    }
+
+    // Initial validation
+    validateBaggageCount();
 });
