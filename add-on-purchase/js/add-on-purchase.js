@@ -72,7 +72,107 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-
     // Initial validation
     validateBaggageCount();
+
+    const viewMenuButton = document.querySelector('.bg-white.text-gray-700.text-lg.font-semibold.px-6.py-2');
+    const body = document.body;
+
+    // Create the menu overlay div
+    const menuOverlay = document.createElement('div');
+    menuOverlay.style.position = 'fixed';
+    menuOverlay.style.top = '0';
+    menuOverlay.style.left = '0';
+    menuOverlay.style.width = '100%';
+    menuOverlay.style.height = '100%';
+    menuOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+    menuOverlay.style.display = 'none';
+    menuOverlay.style.justifyContent = 'center';
+    menuOverlay.style.alignItems = 'center';
+    menuOverlay.style.zIndex = '1000';
+
+    // Create the menu content div
+    const menuContent = document.createElement('div');
+    menuContent.style.backgroundColor = 'white';
+    menuContent.style.padding = '20px';
+    menuContent.style.borderRadius = '8px';
+    menuContent.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+    menuContent.style.textAlign = 'center';
+    menuContent.style.position = 'relative';
+
+    // Adjust the menu content size
+    menuContent.style.width = '80%';
+    menuContent.style.height = '80%';
+    menuContent.style.overflowY = 'auto';
+
+    // Add header to menu content
+    const menuHeader = document.createElement('h2');
+    menuHeader.textContent = 'Menu';
+    menuHeader.style.fontSize = '1.5rem';
+    menuHeader.style.marginBottom = '20px';
+    menuContent.appendChild(menuHeader);
+
+    // Add close button to menu content
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'x';
+    closeButton.style.position = 'absolute';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.backgroundColor = 'lightgray';
+    closeButton.style.border = 'none';
+    closeButton.style.borderRadius = '50%';
+    closeButton.style.width = '30px';
+    closeButton.style.height = '30px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.addEventListener('click', () => {
+        menuOverlay.style.display = 'none';
+    });
+    menuContent.appendChild(closeButton);
+
+    // Create three light gray boxes for menu items
+    const menuItemsContainer = document.createElement('div');
+    menuItemsContainer.style.display = 'flex';
+    menuItemsContainer.style.justifyContent = 'space-around';
+    menuItemsContainer.style.marginTop = '20px';
+
+    for (let i = 0; i < 3; i++) {
+        const menuItem = document.createElement('div');
+        menuItem.style.backgroundColor = 'lightgray';
+        menuItem.style.width = '30%';
+        menuItem.style.height = '60%';
+        menuItem.style.borderRadius = '8px';
+        menuItem.style.display = 'flex';
+        menuItem.style.flexDirection = 'column';
+        menuItem.style.alignItems = 'center';
+        menuItem.style.justifyContent = 'center';
+        menuItem.style.padding = '10px';
+
+        // Add image placeholder
+        const imagePlaceholder = document.createElement('div');
+        imagePlaceholder.style.width = '100%';
+        imagePlaceholder.style.height = '70%';
+        imagePlaceholder.style.backgroundColor = 'white';
+        imagePlaceholder.style.borderRadius = '8px';
+        imagePlaceholder.style.marginBottom = '10px';
+        menuItem.appendChild(imagePlaceholder);
+
+        // Add meal name placeholder
+        const mealName = document.createElement('p');
+        mealName.textContent = `Meal ${i + 1}`;
+        mealName.style.fontSize = '1rem';
+        mealName.style.fontWeight = 'bold';
+        menuItem.appendChild(mealName);
+
+        menuItemsContainer.appendChild(menuItem);
+    }
+
+    menuContent.appendChild(menuItemsContainer);
+
+    menuOverlay.appendChild(menuContent);
+    body.appendChild(menuOverlay);
+
+    // Show menu overlay on button click
+    viewMenuButton.addEventListener('click', () => {
+        menuOverlay.style.display = 'flex';
+    });
 });
