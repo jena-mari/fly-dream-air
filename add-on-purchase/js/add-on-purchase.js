@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', () => {
     menuContent.style.position = 'relative';
 
     // Adjust the menu content size
-    menuContent.style.width = '80%';
-    menuContent.style.height = '80%';
+    menuContent.style.width = '50%';
+    menuContent.style.height = '50%';
     menuContent.style.overflowY = 'auto';
 
     // Add header to menu content
@@ -175,4 +175,27 @@ document.addEventListener('DOMContentLoaded', () => {
     viewMenuButton.addEventListener('click', () => {
         menuOverlay.style.display = 'flex';
     });
+
+    // Add event listeners to meal amount buttons
+    const mealButtons = document.querySelectorAll('.meal-btn');
+
+    mealButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove outline from all buttons
+            mealButtons.forEach(btn => {
+                btn.style.outline = 'none';
+                btn.style.outlineOffset = '0';
+            });
+
+            // Add outline to the selected button
+            button.style.outline = '2px solid #6AABDD';
+            button.style.outlineOffset = '-2px';
+        });
+    });
+
+    // Set default selected button
+    if (mealButtons.length > 0) {
+        mealButtons[0].style.outline = '2px solid #6AABDD';
+        mealButtons[0].style.outlineOffset = '-2px';
+    }
 });
